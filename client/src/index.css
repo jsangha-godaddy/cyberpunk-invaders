@@ -1,0 +1,230 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cyan: #00ffff;
+  --magenta: #ff00ff;
+  --yellow-green: #aaff00;
+  --bg: #0a0a0f;
+  --panel-bg: #0d0d1a;
+  --purple: #1a0030;
+  --text: #c0c0d0;
+  --border: rgba(0, 255, 255, 0.4);
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  overflow: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  text-shadow:
+    0 0 10px var(--cyan),
+    0 0 30px var(--cyan),
+    0 0 60px rgba(0, 255, 255, 0.4);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--magenta);
+  text-shadow: 0 0 8px var(--magenta);
+  margin-bottom: 24px;
+}
+
+.game-wrapper {
+  position: relative;
+  display: inline-block;
+  border: 1px solid var(--border);
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.15),
+    inset 0 0 40px rgba(0, 0, 20, 0.8);
+}
+
+canvas {
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 10, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal {
+  background: var(--panel-bg);
+  border: 1px solid var(--cyan);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+  padding: 40px 48px;
+  text-align: center;
+  min-width: 320px;
+}
+
+.modal h2 {
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+  color: var(--magenta);
+  text-shadow: 0 0 12px var(--magenta);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.modal .score-display {
+  font-size: 2.5rem;
+  color: var(--cyan);
+  text-shadow: 0 0 15px var(--cyan);
+  margin: 12px 0 24px;
+}
+
+.modal input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--cyan);
+  color: var(--cyan);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.2rem;
+  padding: 8px 4px;
+  text-align: center;
+  outline: none;
+  letter-spacing: 0.15em;
+  margin-bottom: 24px;
+}
+
+.modal input::placeholder {
+  color: rgba(0, 255, 255, 0.3);
+}
+
+.btn {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+  margin: 4px;
+}
+
+.btn:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+}
+
+.btn.magenta {
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+
+.btn.magenta:hover {
+  background: rgba(255, 0, 255, 0.1);
+  box-shadow: 0 0 12px rgba(255, 0, 255, 0.4);
+}
+
+.rank-message {
+  font-size: 0.85rem;
+  color: var(--yellow-green);
+  text-shadow: 0 0 8px var(--yellow-green);
+  margin-bottom: 20px;
+  letter-spacing: 0.1em;
+}
+
+/* Leaderboard */
+.leaderboard {
+  width: 800px;
+  max-width: 100%;
+}
+
+.leaderboard h2 {
+  font-size: 1.4rem;
+  letter-spacing: 0.3em;
+  color: var(--cyan);
+  text-shadow: 0 0 12px var(--cyan);
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard th {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--magenta);
+  text-align: left;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(255, 0, 255, 0.3);
+  text-transform: uppercase;
+}
+
+.leaderboard td {
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.08);
+}
+
+.leaderboard tr:nth-child(1) td { color: #ffd700; text-shadow: 0 0 8px #ffd700; }
+.leaderboard tr:nth-child(2) td { color: #c0c0c0; }
+.leaderboard tr:nth-child(3) td { color: #cd7f32; }
+
+.leaderboard .rank-col {
+  width: 60px;
+  text-align: center;
+  color: var(--text);
+  opacity: 0.5;
+}
+
+.leaderboard .score-col {
+  text-align: right;
+  color: var(--cyan);
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text);
+  opacity: 0.4;
+  padding: 40px;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+}
+
+.controls-hint {
+  margin-top: 12px;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: rgba(192, 192, 208, 0.4);
+  text-align: center;
+}
