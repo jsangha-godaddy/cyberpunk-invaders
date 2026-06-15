@@ -63,16 +63,30 @@ function makeShields() {
 }
 
 function drawPlayer(ctx, x, y) {
-  ctx.shadowColor = COLORS.player;
+  const c = COLORS.player;
+  ctx.shadowColor = c;
   ctx.shadowBlur = 12;
-  ctx.fillStyle = COLORS.player;
-  // Body
-  ctx.fillRect(x + 10, y + 8, PLAYER_W - 20, PLAYER_H - 8);
-  // Nose
-  ctx.fillRect(x + 18, y, 4, 10);
-  // Wings
-  ctx.fillRect(x, y + 12, 12, 8);
-  ctx.fillRect(x + PLAYER_W - 12, y + 12, 12, 8);
+  ctx.fillStyle = c;
+
+  // Terminal body
+  ctx.fillRect(x + 6, y + 3, 28, 17);
+  // Camera / sensor bump at top (nose)
+  ctx.fillRect(x + 14, y, 12, 5);
+  // Side grip buttons (wings)
+  ctx.fillRect(x, y + 8, 7, 5);
+  ctx.fillRect(x + 33, y + 8, 7, 5);
+
+  // Screen (dark inset)
+  ctx.fillStyle = '#001a1a';
+  ctx.fillRect(x + 9, y + 4, 22, 10);
+  // Screen active glow
+  ctx.fillStyle = c;
+  ctx.fillRect(x + 11, y + 6, 18, 6);
+
+  // Card reader slot
+  ctx.fillStyle = '#001a1a';
+  ctx.fillRect(x + 10, y + 17, 20, 2);
+
   ctx.shadowBlur = 0;
 }
 
